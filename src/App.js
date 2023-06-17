@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import Logo from './component/Logo'
+import Form from './component/Form'
+import PackingList from './component/PackingList'
+import Stats from './component/Stats'
+import { useState } from 'react'
 
-function App() {
+const App = () => {
+  const [items,setItems] = useState([])
+  function handleAddItems(item){
+    setItems((items)=>[...items,item])
+  }
+
+  function handleDeletItems(id){
+    setItems((items)=>items.filter((item)=>item.id !== id))
+  }
+  function handleToggleItem(id){
+    setItems((items)=>items.map((item)=>item.id ===id?{...item,packed:!item.packed}:item))
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='app'>
+      <Logo/>
+      <Form  onAddItems={handleAddItems}/>
+      <PackingList items = {items} onDeletItems={handleDeletItems} onToggleItem={handleToggleItem}/>
+      <Stats/>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
