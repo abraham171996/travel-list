@@ -7,6 +7,7 @@ import { useState } from 'react'
 
 const App = () => {
   const [items,setItems] = useState([])
+ 
   function handleAddItems(item){
     setItems((items)=>[...items,item])
   }
@@ -22,7 +23,7 @@ const App = () => {
       <Logo/>
       <Form  onAddItems={handleAddItems}/>
       <PackingList items = {items} onDeletItems={handleDeletItems} onToggleItem={handleToggleItem}/>
-      <Stats/>
+      <Stats items={items}/>
     </div>
   )
 }
