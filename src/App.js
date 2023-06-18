@@ -1,29 +1,10 @@
 import React from 'react'
-import Logo from './component/Logo'
-import Form from './component/Form'
-import PackingList from './component/PackingList'
-import Stats from './component/Stats'
-import { useState } from 'react'
+import All from './component/All'
 
 const App = () => {
-  const [items,setItems] = useState([])
- 
-  function handleAddItems(item){
-    setItems((items)=>[...items,item])
-  }
-
-  function handleDeletItems(id){
-    setItems((items)=>items.filter((item)=>item.id !== id))
-  }
-  function handleToggleItem(id){
-    setItems((items)=>items.map((item)=>item.id ===id?{...item,packed:!item.packed}:item))
-  }
-  return (
+  return(
     <div className='app'>
-      <Logo/>
-      <Form  onAddItems={handleAddItems}/>
-      <PackingList items = {items} onDeletItems={handleDeletItems} onToggleItem={handleToggleItem}/>
-      <Stats items={items}/>
+      <All/>
     </div>
   )
 }
